@@ -2,11 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <!-- <Nullable>enable</Nullable> -->
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <!-- <ItemGroup>
+    <None Uptdate = "bd\Tienda.db">
+      <CopyToOutputDirectoy> Always </CopyToOutputDirectoy>
+    </Node>
+  </ItemGroup>
+   -->
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.0-rc.2.24474.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
