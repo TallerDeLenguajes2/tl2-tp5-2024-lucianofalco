@@ -1,16 +1,24 @@
+using System.Security.Authentication.ExtendedProtection;
 
-// Crear un nuevo Producto. (recibe un objeto Producto)
-// ● Modificar un Producto existente. (recibe un Id y un objeto Producto)
-// ● Listar todos los Productos registrados. (devuelve un List de Producto)
-// ● Obtener detalles de un Productos por su ID. (recibe un Id y devuelve un
-// Producto)
-// ● Eliminar un Producto por ID
-public interface IProductoRepository
+public class ProductoRepository : IProductoRepository
 {
-    void CrearProducto(Producto p);
-    Producto ModificarProducto(Producto p , int id);
-    List<Producto> ListarProductos();
-    void EliminarProducto(int id);
+    public void CrearProducto(Producto p)
+    {
+        throw new NotImplementedException();
+    }
 
+    public void EliminarProducto(int id)
+    {
+        throw new NotImplementedException();
+    }
 
+    public List<Producto> ListarProductos()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Producto ModificarProducto(Producto p, int id)
+    {
+        throw new NotImplementedException();
+    }
 }

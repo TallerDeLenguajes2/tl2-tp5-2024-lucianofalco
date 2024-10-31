@@ -15,7 +15,7 @@ public interface IPresupuestoRepositoy
     void CrearPresupuesto(Presupuesto p);
     List<Presupuesto> ListarPresupuesto();
 
-    Presupuesto getPresupuesto(int id);
+    Presupuesto GetPresupuesto(int id);
 
     void agregarProducto(int id);// ,  Producto producto , int cantidad);
 

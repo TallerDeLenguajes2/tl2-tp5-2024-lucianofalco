@@ -1,12 +1,9 @@
 /*
-    ● Presupuestos
-        ○ int IdPresupuesto
-        ○ string nombreDestinatario
-        ○ List<PresupuestoDetalle> detalle
-        ○ Metodos
-        ■ MontoPresupuesto ()
-        ■ MontoPresupuestoConIva()
-        ■ CantidadProductos ()
+● Productos
+    ○ int idProducto
+    ○ string descripcion
+    ○ int precio
+
 
 */
 public class Producto
