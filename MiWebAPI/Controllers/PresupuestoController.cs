@@ -16,24 +16,32 @@ public class PresupuestoController : ControllerBase
 {
 
     [HttpPost("CrearPresupuesto")]
-    ActionResult<Presupuesto> CrearPresupuesto(){ // Permite crear un Presupuesto.
+    public ActionResult<Presupuesto> CrearPresupuesto(){ // Permite crear un Presupuesto.
         return Ok();
     }
 
     [HttpPost("{id}/ProductoDetalle")]
-    ActionResult<Presupuesto> AgregarProductoAlPresupuesto(int id , PresupuestoDetalle pd){ //Permite agregar un Producto existente y una cantidad al presupuesto.
+    public ActionResult<Presupuesto> AgregarProductoAlPresupuesto(int id , PresupuestoDetalle pd){ //Permite agregar un Producto existente y una cantidad al presupuesto.
         return Ok();
     }
 
     [HttpGet]
-    ActionResult<List<Presupuesto>> GetPresupuestos(){ //Permite listar los presupuestos existentes.
+    public ActionResult<List<Presupuesto>> GetPresupuestos(){ //Permite listar los presupuestos existentes.
         return Ok();
     }
 
-
-    [HttpPut("{id}")] //PUT /api/Presupuesto/{id}/ProductoDetalle
-    ActionResult<Presupuesto> ModificarPresupuesto(int id , int cantidad , Producto p){ //Permite agregar un Producto existente y una cantidad al presupuesto.
-        return Ok();
+    ///
+    /// <summary>
+    /// Permite visualisar un Presupuesto por id
+    /// </summary>
+    /// <param name="id"> id del presupuesto </param>
+    /// <returns> retorna el presupuesto seleccionado, caso contrario hace un badrequest</returns>
+    [HttpGet("{id}")]
+    public ActionResult<Presupuesto> GetPresupuesto(int id){ 
+        PresupuestosRepository repository = new PresupuestosRepository();
+        var presupuesto = repository.GetPresupuesto(id);
+        if (presupuesto is null) return BadRequest();
+        return Ok(presupuesto);
     }
 }
 

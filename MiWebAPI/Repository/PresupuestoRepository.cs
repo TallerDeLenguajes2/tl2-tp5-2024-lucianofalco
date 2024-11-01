@@ -1,7 +1,6 @@
 
+using Microsoft.Data.Sqlite;
 
-// string CadenaDeConexion = "Data Source=InstitutoDb.db;Cache=Shared“ ; Cadena de conexión para sqlite
-//string connectionString = "Data Source=(local);Initial Catalog=Northwind;" + "IntegratedSecurity=true"; //que es ? 
 public class PresupuestosRepository : IPresupuestoRepositoy
 {
     public void agregarProducto(int id)
@@ -21,23 +20,28 @@ public class PresupuestosRepository : IPresupuestoRepositoy
 
     public Presupuesto GetPresupuesto(int id)
     {
-        //throw new NotImplementedException();
-        string connectionString = "Data Source=(local);Initial Catalog=Northwind;" + "IntegratedSecurity=true";
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            connection.Open();
-            string queryString = $"select * from presupuestos where idPresupuesto = {id} ;";
-            var command = new SqlCommand(queryString, connection);
-            connection.Open();
-            using (var reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {} // Resultados obtenidos (1 fila por vez)
-            }
-
+        Presupuesto presupuesto = null; 
+         string connectionString = "Data Source=bd/Tienda.db;";
+         using (SqliteConnection connection = new SqliteConnection(connectionString))
+         {
+             connection.Open();
+             string queryString = $"select * from Presupuestos where idPresupuesto = @id;";
+             var command = new SqliteCommand(queryString, connection);
+             command.Parameters.AddWithValue("@id", id);
+             using (var reader = command.ExecuteReader())
+             {
+                 while (reader.Read())
+                 {
+                    presupuesto = new Presupuesto();
+                    presupuesto.IdPresupuesto = Convert.ToInt32(reader["idPresupuesto"]);
+                    presupuesto.NombreDestinatario = reader["NombreDestinatario"].ToString();
+                    presupuesto.FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]);
+                    
+                 } 
+             }
             connection.Close();
-        }
-        // string queryString = $"select * from presupuestos where idPresupuesto = {id} ;" ; 
+         }
+        return presupuesto;
     }
 
     public List<Presupuesto> ListarPresupuesto()

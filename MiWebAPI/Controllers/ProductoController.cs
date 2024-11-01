@@ -12,17 +12,17 @@ using Microsoft.AspNetCore.Mvc;
 public class ProductoController : ControllerBase
 {
     [HttpGet("GetProductos")]
-    ActionResult<List<Producto>> GetProductos(){
+    public ActionResult<List<Producto>> GetProductos(){
         return Ok();
     }
 
     [HttpPut("ModificarProducto/{id}")]
-    ActionResult<Producto> PutProducto(int id , string nombre){
+    public ActionResult<Producto> PutProducto(int id , string nombre){
         return Ok();
     }
 
     [HttpPost("AgregarProducto")]
-    ActionResult<Producto> AddProducto(Producto p){
+    public ActionResult<Producto> AddProducto(Producto p){
         return Ok();
     } 
 

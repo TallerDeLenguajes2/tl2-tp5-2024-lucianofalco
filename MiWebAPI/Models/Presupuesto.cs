@@ -12,6 +12,8 @@ public class Presupuesto
     string nombreDestinario ; 
     List<PresupuestoDetalle> detalles ;
 
+    public DateTime FechaCreacion {get; set;} 
+
     public Presupuesto()
     {
     }
@@ -24,7 +26,7 @@ public class Presupuesto
     }
 
     public int IdPresupuesto { get => idPresupuesto; set => idPresupuesto = value; }
-    public string NombreDestinario { get => nombreDestinario; set => nombreDestinario = value; }
+    public string NombreDestinatario { get => nombreDestinario; set => nombreDestinario = value; }
     public List<PresupuestoDetalle> Detalles { get => detalles; set => detalles = value; }
 
 
