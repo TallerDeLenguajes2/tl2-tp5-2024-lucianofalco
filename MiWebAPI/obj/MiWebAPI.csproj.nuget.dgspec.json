@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\luciano\\Documents\\taller2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\MiWebAPI.csproj": {}
+    "C:\\Users\\luciano\\Documents\\tallerLenguajes2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\MiWebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\luciano\\Documents\\taller2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\MiWebAPI.csproj": {
+    "C:\\Users\\luciano\\Documents\\tallerLenguajes2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\MiWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\luciano\\Documents\\taller2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\MiWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\luciano\\Documents\\tallerLenguajes2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\MiWebAPI.csproj",
         "projectName": "MiWebAPI",
-        "projectPath": "C:\\Users\\luciano\\Documents\\taller2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\MiWebAPI.csproj",
+        "projectPath": "C:\\Users\\luciano\\Documents\\tallerLenguajes2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\MiWebAPI.csproj",
         "packagesPath": "C:\\Users\\luciano\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\luciano\\Documents\\taller2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\obj\\",
+        "outputPath": "C:\\Users\\luciano\\Documents\\tallerLenguajes2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\luciano\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

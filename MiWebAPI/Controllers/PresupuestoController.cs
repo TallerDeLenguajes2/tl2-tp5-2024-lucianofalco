@@ -16,18 +16,25 @@ public class PresupuestoController : ControllerBase
 {
 
     [HttpPost("CrearPresupuesto")]
-    public ActionResult<Presupuesto> CrearPresupuesto(){ // Permite crear un Presupuesto.
+    public ActionResult<Presupuesto> CrearPresupuesto([FromBody] Presupuesto nuevoP){ // Permite crear un Presupuesto.
+        PresupuestosRepository repository = new PresupuestosRepository();
+        repository.CrearPresupuesto(nuevoP);
         return Ok();
     }
 
     [HttpPost("{id}/ProductoDetalle")]
-    public ActionResult<Presupuesto> AgregarProductoAlPresupuesto(int id , PresupuestoDetalle pd){ //Permite agregar un Producto existente y una cantidad al presupuesto.
+    public ActionResult<Presupuesto> AgregarProductoAlPresupuesto(int id ,int cantidad , Presupuesto p ){ //Permite agregar un Producto existente y una cantidad al presupuesto.
+        PresupuestosRepository repository = new PresupuestosRepository();
+        repository.agregarProducto(id);
         return Ok();
     }
 
-    [HttpGet]
+    [HttpGet("ListarPresupuesto")]
     public ActionResult<List<Presupuesto>> GetPresupuestos(){ //Permite listar los presupuestos existentes.
-        return Ok();
+        PresupuestosRepository repository = new PresupuestosRepository();
+        var presupuesto = repository.ListarPresupuesto();
+        if(presupuesto is null) return BadRequest();
+        return Ok(presupuesto);
     }
 
     ///

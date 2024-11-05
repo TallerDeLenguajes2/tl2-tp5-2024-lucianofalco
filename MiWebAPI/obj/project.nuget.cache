@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9QZIkdqoEAc=",
+  "dgSpecHash": "itDVLwwnoC5HzE/Z7vlJ7Xmlqx3hXoIvjuhJXk/t5GqlevBNojktl/MixDLDusSED2oRIVzJ+Xe8844m93NtLw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\luciano\\Documents\\taller2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\MiWebAPI.csproj",
+  "projectFilePath": "C:\\Users\\luciano\\Documents\\tallerLenguajes2\\tl2-tp5-2024-lucianofalco\\MiWebAPI\\MiWebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\luciano\\.nuget\\packages\\microsoft.data.sqlite\\8.0.10\\microsoft.data.sqlite.8.0.10.nupkg.sha512",
     "C:\\Users\\luciano\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.10\\microsoft.data.sqlite.core.8.0.10.nupkg.sha512",

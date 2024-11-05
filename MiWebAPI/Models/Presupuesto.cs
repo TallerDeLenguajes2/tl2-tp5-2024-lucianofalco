@@ -11,18 +11,22 @@ public class Presupuesto
     int idPresupuesto ; 
     string nombreDestinario ; 
     List<PresupuestoDetalle> detalles ;
-
     public DateTime FechaCreacion {get; set;} 
 
     public Presupuesto()
     {
     }
 
-    public Presupuesto(int idPresupuesto, string nombreDestinario, List<PresupuestoDetalle> detalles)
+    public Presupuesto(string nombreDestinario, DateTime FechaCreacion , List<PresupuestoDetalle> detalles)
     {
-        this.idPresupuesto = idPresupuesto;
         this.nombreDestinario = nombreDestinario;
-        this.detalles = detalles;
+        this.FechaCreacion = FechaCreacion ; 
+        this.Detalles = detalles ; 
+    }
+    public Presupuesto(string nombreDestinario, DateTime FechaCreacion)
+    {
+        this.nombreDestinario = nombreDestinario;
+        this.FechaCreacion = FechaCreacion ; 
     }
 
     public int IdPresupuesto { get => idPresupuesto; set => idPresupuesto = value; }
