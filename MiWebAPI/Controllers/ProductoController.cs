@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 [Route("[controller]")]
 public class ProductoController : ControllerBase
 {
+
     [HttpGet("GetProductos")]
     public ActionResult<List<Producto>> GetProductos(){
         var repositoy = new ProductoRepository();

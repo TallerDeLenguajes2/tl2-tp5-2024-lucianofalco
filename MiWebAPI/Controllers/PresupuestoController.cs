@@ -23,7 +23,7 @@ public class PresupuestoController : ControllerBase
     }
 
     [HttpPost("{id}/ProductoDetalle")]
-    public ActionResult<Presupuesto> AgregarProductoAlPresupuesto(int id ,int cantidad , Presupuesto p ){ //Permite agregar un Producto existente y una cantidad al presupuesto.
+    public ActionResult<Presupuesto> AgregarProductoAlPresupuesto(int id ,int cantidad){ //Permite agregar un Producto existente y una cantidad al presupuesto.
         PresupuestosRepository repository = new PresupuestosRepository();
         repository.agregarProducto(id);
         return Ok();

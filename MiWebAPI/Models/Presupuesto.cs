@@ -15,6 +15,7 @@ public class Presupuesto
 
     public Presupuesto()
     {
+        detalles = new List<PresupuestoDetalle>();
     }
 
     public Presupuesto(string nombreDestinario, DateTime FechaCreacion , List<PresupuestoDetalle> detalles)
@@ -45,7 +46,7 @@ public class Presupuesto
         double total = 0 ;
         foreach (var d in detalles)
         {
-            total += d.Producto.Precio ; 
+            total += d.Producto.Precio * d.Cantidad ; 
         }
         return total ;
     }
