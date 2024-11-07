@@ -5,11 +5,13 @@
 // ● Obtener detalles de un Productos por su ID. (recibe un Id y devuelve un
 // Producto)
 // ● Eliminar un Producto por ID
+using System.Runtime.CompilerServices;
+
 public interface IProductoRepository
 {
-    void CrearProducto(Producto p);
-    Producto ModificarProducto(Producto p , int id);
+    Producto CrearProducto(Producto p);
+    Producto ModificarProducto(int id , string nombre);
     List<Producto> ListarProductos();
-    void EliminarProducto(int id);
+    //Producto EliminarProducto(int id);
 
 }

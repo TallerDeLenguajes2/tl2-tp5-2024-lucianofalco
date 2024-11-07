@@ -13,11 +13,12 @@ Presupuesto con sus productos y cantidades)
 public interface IPresupuestoRepositoy
 {
     void CrearPresupuesto(Presupuesto p);
+
     List<Presupuesto> ListarPresupuesto();
 
     Presupuesto GetPresupuesto(int id);
 
-    void agregarProducto(int id);// ,  Producto producto , int cantidad);
+    PresupuestoDetalle agregarProducto(int idpre , int idpro, int cantidad);
 
-    void EliminarPresupuesto(int id) ;
+    Presupuesto EliminarPresupuesto(int id) ;
 }

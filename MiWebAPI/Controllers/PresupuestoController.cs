@@ -19,14 +19,15 @@ public class PresupuestoController : ControllerBase
     public ActionResult<Presupuesto> CrearPresupuesto([FromBody] Presupuesto nuevoP){ // Permite crear un Presupuesto.
         PresupuestosRepository repository = new PresupuestosRepository();
         repository.CrearPresupuesto(nuevoP);
-        return Ok();
+        return Ok(nuevoP); // consultar que pasa con el producto cuando creo un presupuesto
     }
 
-    [HttpPost("{id}/ProductoDetalle")]
-    public ActionResult<Presupuesto> AgregarProductoAlPresupuesto(int id ,int cantidad){ //Permite agregar un Producto existente y una cantidad al presupuesto.
+    [HttpPost("{idpro}/ProductoDetalle")]
+    public ActionResult<PresupuestoDetalle> AgregarProductoAlPresupuesto(int idpre , int idpro ,int cantidad){ //Permite agregar un Producto existente y una cantidad al presupuesto.
         PresupuestosRepository repository = new PresupuestosRepository();
-        repository.agregarProducto(id);
-        return Ok();
+        var pd = repository.agregarProducto(idpre , idpro , cantidad);
+        if (pd is null) return BadRequest();
+        return Ok(pd);
     }
 
     [HttpGet("ListarPresupuesto")]

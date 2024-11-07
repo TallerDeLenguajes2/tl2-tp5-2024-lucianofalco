@@ -11,23 +11,31 @@ using Microsoft.AspNetCore.Mvc;
 [Route("[controller]")]
 public class ProductoController : ControllerBase
 {
+    private ProductoRepository  repo = new ProductoRepository();
 
     [HttpGet("GetProductos")]
     public ActionResult<List<Producto>> GetProductos(){
-        var repositoy = new ProductoRepository();
-        return Ok(repositoy.ListarProductos());
+        return Ok(repo.ListarProductos());
     }
 
     [HttpPut("ModificarProducto/{id}")]
     public ActionResult<Producto> PutProducto(int id , string nombre){ //consultar por que manda nombre por parametro si en el repositorio recibe un producto
-        return Ok();
+        var p = repo.ModificarProducto(id , nombre);
+        if (p is null) return BadRequest();
+        return Ok(p);
     }
 
     [HttpPost("AgregarProducto")]
     public ActionResult<Producto> AddProducto(Producto p){
-        var repositoy = new ProductoRepository();
-        repositoy.CrearProducto(p);
+        repo.CrearProducto(p);
         return Ok();
     } 
+
+    // [HttpDelete("EliminarProducto/{id}")]
+    // public ActionResult<Producto> DeleteProducto(int id){
+    //     Producto eliminado = repo.EliminarProducto(id);
+    //     if (eliminado is null) return BadRequest();
+    //     return Ok(eliminado);
+    // }
 
 }

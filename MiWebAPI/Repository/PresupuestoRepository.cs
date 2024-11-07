@@ -9,35 +9,57 @@ public class PresupuestosRepository : IPresupuestoRepositoy
         connectionString = "Data Source=bd/Tienda.db;";
     }
 
-    public void agregarProducto(int idPro)  //} , int idPre , int cant) // consultar si no es mejor hacer que re
+    public PresupuestoDetalle agregarProducto(int idPre, int idpro, int cantidad)  // PresupuestoDetalle agregarProducto(int idpre , int idpro, int cantidad);
     {
-        using (SqliteConnection connection = new SqliteConnection(connectionString))
+        PresupuestoDetalle pd = null;
+        ProductoRepository productoRepository = new ProductoRepository();
+        Producto producto = productoRepository.ListarProductos().Find(p => p.IdProducto == idpro);
+        if (producto != null)
         {
-            connection.Open();
-            string stringQuery = "Select * from productos where idProducto = @id";
-            var command = new SqliteCommand(stringQuery, connection);
-            command.Parameters.AddWithValue("@id", idPro);
-            Producto productoBuscado = null;
-            using (var reader = command.ExecuteReader())
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
             {
-                while (reader.Read())
+                connection.Open();
+                string insertarPresupuestoDetalleQuery = "INSERT INTO presupuestosdetalle (idPresupuesto, idProducto , Cantidad) VALUES (@idpre , @idpro, @cant);";
+                string verificarCorrespondencia = "SELECT * FROM presupuestosdetalle WHERE idPresupuesto = @idpre AND idProducto = @idpro;";
+                var commandVerificar = new SqliteCommand(verificarCorrespondencia, connection);
+                commandVerificar.Parameters.AddWithValue("@idpre", idPre);
+                commandVerificar.Parameters.AddWithValue("@idpro", idpro);
+                bool registroExiste = false;
+                using (var leer = commandVerificar.ExecuteReader())
                 {
-                    productoBuscado = new Producto();
-                    productoBuscado.IdProducto = Convert.ToInt32(reader["idProducto"]);
-                    productoBuscado.Precio = Convert.ToDouble(reader["Precio"]);
-                    productoBuscado.Descripcion = reader["Descripcion"].ToString();
+                    if (leer.Read())
+                    {
+                        registroExiste = true;
+                    }
                 }
+
+                if (!registroExiste)
+                {
+                    var command = new SqliteCommand(insertarPresupuestoDetalleQuery, connection);
+                    command.Parameters.AddWithValue("@idpre", idPre);
+                    command.Parameters.AddWithValue("@idpro", idpro);
+                    command.Parameters.AddWithValue("@cant", cantidad);
+                    command.ExecuteNonQuery();
+
+                    string nuevaConsulta = "select * from presupuestosdetalle where idProducto == @idpro and idPresupuesto == @idpre; ";
+                    var newCommand = new SqliteCommand(nuevaConsulta, connection);
+                    newCommand.Parameters.AddWithValue("@idpre", idPre);
+                    newCommand.Parameters.AddWithValue("@idpro", idpro);
+                    using (var leer = newCommand.ExecuteReader())
+                    {
+                        while (leer.Read())
+                        {
+                            pd = new PresupuestoDetalle();
+                            pd.Producto.IdProducto = Convert.ToInt32(leer["idProducto"]);
+                            pd.Cantidad = Convert.ToInt32(leer["Cantidad"]);
+                        }
+                    }
+                }
+                connection.Close();
             }
-            if (productoBuscado is not null)
-            {
-                string newquery = "INSERT INTO PresupuestosDetalle (idPresupuesto, idProducto, Cantidad) VALUES (@idpre, @idpro, @cant); ";
-                var presupuestoDetalle = new PresupuestoDetalle();
-                var newcommand = new SqliteCommand(newquery, connection);
-                //newcommand.Parameters.AddWithValue("@idpre" , presupuestoDetalle. );
-                newcommand.Parameters.AddWithValue("@idpro", productoBuscado.Precio);
-                newcommand.ExecuteNonQuery();
-            }
+
         }
+        return pd;
     }
 
     public void CrearPresupuesto(Presupuesto p)
@@ -54,8 +76,9 @@ public class PresupuestosRepository : IPresupuestoRepositoy
         }
     }
 
-    public void EliminarPresupuesto(int id)
+    public Presupuesto EliminarPresupuesto(int id)
     {
+        Presupuesto presupuesto = GetPresupuesto(id);
         using (SqliteConnection connection = new SqliteConnection(connectionString))
         {
             connection.Open();
@@ -65,6 +88,7 @@ public class PresupuestosRepository : IPresupuestoRepositoy
             command.ExecuteNonQuery(); // consultar que pasa si no encuentra el id a borrar
             connection.Close();
         }
+        return presupuesto;
     }
 
     public Presupuesto GetPresupuesto(int id)
