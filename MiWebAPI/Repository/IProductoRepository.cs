@@ -12,6 +12,6 @@ public interface IProductoRepository
     Producto CrearProducto(Producto p);
     Producto ModificarProducto(int id , string nombre);
     List<Producto> ListarProductos();
-    //Producto EliminarProducto(int id);
+    Producto EliminarProducto(int id);
 
 }

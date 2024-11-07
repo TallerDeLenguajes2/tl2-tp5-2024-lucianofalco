@@ -31,11 +31,11 @@ public class ProductoController : ControllerBase
         return Ok();
     } 
 
-    // [HttpDelete("EliminarProducto/{id}")]
-    // public ActionResult<Producto> DeleteProducto(int id){
-    //     Producto eliminado = repo.EliminarProducto(id);
-    //     if (eliminado is null) return BadRequest();
-    //     return Ok(eliminado);
-    // }
+    [HttpDelete("EliminarProducto/{id}")]
+    public ActionResult<Producto> DeleteProducto(int id){
+        Producto eliminado = repo.EliminarProducto(id);
+        if (eliminado is null) return BadRequest();
+        return Ok(eliminado);
+    }
 
 }

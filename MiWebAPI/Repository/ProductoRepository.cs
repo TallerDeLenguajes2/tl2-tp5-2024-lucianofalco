@@ -39,24 +39,36 @@ public class ProductoRepository : IProductoRepository
         }
         return producto;
     }
+public Producto EliminarProducto(int id)
+{
+    Producto productoEliminado = ListarProductos().Find(p => p.IdProducto == id);
+    if (productoEliminado is not null)
+    {
+        using (var connection = new SqliteConnection(connectionString))
+        {
+            connection.Open();
 
-    // public Producto EliminarProducto(int id)
-    // {
-    //     Producto productoEliminado = ListarProductos().Find(p => p.IdProducto == id);
-    //     if (productoEliminado is not null)
-    //     {
-    //         using (var connection = new SqliteConnection(connectionString))
-    //         {
-    //             connection.Open();
-    //             string querystring = "DELETE FROM Productos WHERE idProducto = @id";
-    //             var command = new SqliteCommand(querystring, connection);
-    //             command.Parameters.AddWithValue("@id", id);
-    //             command.ExecuteNonQuery();
-    //             connection.Close();
-    //         }
-    //     }
-    //     return productoEliminado;
-    // }
+            string deleteRelated = "DELETE FROM PresupuestosDetalle WHERE idProducto = @id";
+            using (var commandRelated = new SqliteCommand(deleteRelated, connection))
+            {
+                commandRelated.Parameters.AddWithValue("@id", id);
+                commandRelated.ExecuteNonQuery();
+            }
+
+            // Luego, eliminar el producto
+            string querystring = "DELETE FROM Productos WHERE idProducto = @id";
+            using (var command = new SqliteCommand(querystring, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+            }
+
+            connection.Close();
+        }
+    }
+    return productoEliminado;
+}
+
 
     public List<Producto> ListarProductos()
     {
