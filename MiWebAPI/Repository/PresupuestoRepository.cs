@@ -79,14 +79,17 @@ public class PresupuestosRepository : IPresupuestoRepositoy
     public Presupuesto EliminarPresupuesto(int id)
     {
         Presupuesto presupuesto = GetPresupuesto(id);
-        using (SqliteConnection connection = new SqliteConnection(connectionString))
+        if (presupuesto is not null)
         {
-            connection.Open();
-            string queryString = $"DELETE FROM Presupuestos WHERE idPresupuesto = @id ;";
-            var command = new SqliteCommand(queryString, connection);
-            command.Parameters.AddWithValue("@id", id);
-            command.ExecuteNonQuery(); // consultar que pasa si no encuentra el id a borrar
-            connection.Close();
+            using (SqliteConnection connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                string queryString = $"DELETE FROM Presupuestos WHERE idPresupuesto = @id ;";
+                var command = new SqliteCommand(queryString, connection);
+                command.Parameters.AddWithValue("@id", id);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
         return presupuesto;
     }
